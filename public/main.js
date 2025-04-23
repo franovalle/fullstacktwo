@@ -1,38 +1,44 @@
 //using https://zellwk.com/blog/crud-express-mongodb/ as a guide for this project
-//the click events were not working and use the authors updated post, to see how to fix error https://github.com/zellwk/crud-express-mongo/blob/master/public/main.js
 
+//const { response } = require("express")
+
+//note to self: using the authors github post as a guide to help debug the event listener part  
+
+//lets try how the author did it in github 
 var update = document.getElementById('update')
-update.addEventListener('click',function(){
-  fetch('/verses', {
+var deleteButton = document.getElementById('delete')
+
+//const update = document.querySelector('#update-button')
+update.addEventListener('click', _ =>{
+  fetch('verses', {
     method : 'put',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
       'name' : 'Aaliyah',
       'entry' : 'Are you that somebody?'
     })
-    .then(res => {
-      if (res.ok) return res.json()
-    })
     .then(response => {
-      window.location.reload(true)
+      if (response.ok) return response.json()
+    })
+    .then(data => {
+      console.log(data)
+      //window.location.reload(true)//let see if this works 
     })
 
   })
 })
 
-deleteButton.addEventListener('click', _ => {
-  fetch('/verses', {
+//const deleteButton = document.querySelector('#delete-button')
+
+deleteButton.addEventListener('click', function () {
+  fetch('verses', {
     method: 'delete',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       'name': 'Aaliyah'
     })
     
-  })
-  .then(res => {
-    if (res.ok) return res.json()
-  })
-  .then(data => {
+  }).then(function (response){
     window.location.reload()
   })
 
@@ -41,7 +47,7 @@ deleteButton.addEventListener('click', _ => {
 const messageDiv = document.querySelector('#message')
 
 deleteButton.addEventListener('click', _ => {
-  fetch('/verses')
+  fetch('verses')
   .then(res => {
     if (res.ok) return res.json()
   })
