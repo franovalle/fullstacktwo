@@ -4,26 +4,28 @@
 
 //note to self: using the authors github post as a guide to help debug the event listener part  
 
-//lets try how the author did it in github 
+//note to self: lets try how the author did it in github & leons' template 
 var update = document.getElementById('update')
 var deleteButton = document.getElementById('delete')
 
 //const update = document.querySelector('#update-button')
-update.addEventListener('click', _ =>{
+update.addEventListener('click', function () {
   fetch('verses', {
-    method : 'put',
-    headers: {'Content-Type': 'application/json'},
+    method: 'put',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      'name' : 'Aaliyah',
-      'entry' : 'Are you that somebody?'
+      'name': 'Aaliyah',
+      'entry': 'Are you that somebody?'
     })
-    .then(response => {
-      if (response.ok) return response.json()
-    })
-    .then(data => {
-      console.log(data)
-      //window.location.reload(true)//let see if this works 
-    })
+      .then(response => {
+        if (response.ok) return response.json()
+      })
+      .then(data => {
+        console.log(data)
+        window.location.reload(true)
+      })
+
+
 
   })
 })
@@ -33,18 +35,23 @@ update.addEventListener('click', _ =>{
 deleteButton.addEventListener('click', function () {
   fetch('verses', {
     method: 'delete',
-    headers: { 'Content-Type': 'application/json' },
+    headers:
+    {
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({
       'name': 'Aaliyah'
     })
-    
-  }).then(function (response){
+
+  }).then(function (response) {
     window.location.reload()
   })
 
 })
 
-const messageDiv = document.querySelector('#message')
+
+//note to self: giving me too much problem 
+/*const messageDiv = document.querySelector('#message')
 
 deleteButton.addEventListener('click', _ => {
   fetch('verses')
@@ -59,5 +66,5 @@ deleteButton.addEventListener('click', _ => {
       }
     })
     .catch(error => console.error(error))
-})
+})*/
 
