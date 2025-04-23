@@ -1,3 +1,5 @@
+const { result } = require("lodash");
+
 module.exports = function(app, passport, db) {
 
 // normal routes ===============================================================
@@ -9,7 +11,7 @@ module.exports = function(app, passport, db) {
 
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
-        db.collection('messages').find().toArray((err, result) => {
+        db.collection('verses').find().toArray((err, result) => {
           if (err) return console.log(err)
           res.render('profile.ejs', {
             user : req.user,
@@ -28,17 +30,33 @@ module.exports = function(app, passport, db) {
 
 // message board routes ===============================================================
 
-    app.post('/messages', (req, res) => {
-      db.collection('messages').save({name: req.body.name, msg: req.body.msg, thumbUp: 0, thumbDown:0}, (err, result) => {
-        if (err) return console.log(err)
-        console.log('saved to database')
-        res.redirect('/profile')
+    app.post('/verses', (req, res) => {
+      db.collection('verses')
+      .insertOne(req.body)
+      .then(result => {
+        console.log(result);
+        res.redirect('/')
       })
-    })
+      .catch(error => console.log(error))
+})
+app.get('/', (req, res) => {
+  const cursor =  db.collection('verses')
+  .find()
+  .toArray()
+  .then(result => {
+    res.render('index.ejs', {verses : results})
+    //console.log(results)
+  })
+  //console.log(cursor);
+  .catch(error => console.error(error))
+})
+//using https://zellwk.com/blog/crud-express-mongodb/ as a guide for this project
+        
+       
 
-    app.put('/messages', (req, res) => {
-      db.collection('messages')
-      .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
+    app.put('/verses', (req, res) => {
+      db.collection('verses')
+      .findOneAndUpdate({day: req.body.day, entry: req.body.entry}, {
         $set: {
           thumbUp:req.body.thumbUp + 1
         }
@@ -51,8 +69,8 @@ module.exports = function(app, passport, db) {
       })
     })
 
-    app.delete('/messages', (req, res) => {
-      db.collection('messages').findOneAndDelete({name: req.body.name, msg: req.body.msg}, (err, result) => {
+    app.delete('/verses', (req, res) => {
+      db.collection('verses').findOneAndDelete({day: req.body.day, entry: req.body.entry}, (err, result) => {
         if (err) return res.send(500, err)
         res.send('Message deleted!')
       })

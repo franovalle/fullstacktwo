@@ -1,3 +1,9 @@
+//using https://zellwk.com/blog/crud-express-mongodb/ as a guide for this project
+
+const update = document.querySelector('#update-button')
+
+
+
 var thumbUp = document.getElementsByClassName("fa-thumbs-up");
 var trash = document.getElementsByClassName("fa-trash");
 
