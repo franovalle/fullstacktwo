@@ -57,7 +57,7 @@ app.put('/verses', (req, res) => {
   console.log(req.body);
   db.collection('verses')
   .findOneAndUpdate(
-    { name: 'Me' },
+    { name: 'Aaliyah' },
     {
       $set: {
         name: req.body.name,
@@ -76,48 +76,28 @@ app.put('/verses', (req, res) => {
   })
   .catch(error => console.log(error))
 
-
 })
 //
 
-    /* }) following along with the reading 
-       db.collection('verses')
-       .findOneAndUpdate(
-         {name : 'Me' }
-         {
-           $set: {
-             name: req.body.name, 
-             entry: req.body.entry
-           },
-           {
-             upsert: true,
-           }
-         )
-         .then(result =>{
-           res.json('Sucess')
- 
-         })
-         .catch(error => console.log(error))
-   
-        /* {day: req.body.day, entry: req.body.entry}, {
-         $set: {
-           thumbUp:req.body.thumbUp + 1
-         }
-       }, {
-         sort: {_id: -1},
-         upsert: true
-       }, (err, result) => {
-         if (err) return res.send(err)
-         res.send(result)
-       })
-     })*/
-
-    app.delete('/verses', (req, res) => {
+//
+app.delete('/verses', (req, res) => {
+  db.collection('verses'). deleteOne({ name:'Aaliyah' })
+  .then(result => {
+    if (result.deletedCount === 0){
+      return res.json('No quote to delete')
+    }
+    res.json(`Deleted Aaliyah quote`)
+  })
+  .catch(error => console.log(error))
+})
+  
+//keeping it here in case above does not work 
+/*app.delete('/verses', (req, res) => {
       db.collection('verses').findOneAndDelete({ day: req.body.day, entry: req.body.entry }, (err, result) => {
         if (err) return res.send(500, err)
         res.send('Message deleted!')
       })
-    })
+    })*/
 
     // =============================================================================
     // AUTHENTICATE (FIRST LOGIN) ==================================================

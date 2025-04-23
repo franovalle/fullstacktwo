@@ -6,8 +6,8 @@ update.addEventListener('click', _ =>{
     method : 'put',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
-      name : 'God',
-      entry : 'No matter how you feel, I am with you and love you'
+      name : 'Aaliyah',
+      entry : 'Are you that somebody?'
     })
     .then(res => {
       if (res.ok) return res.json()
@@ -22,11 +22,11 @@ update.addEventListener('click', _ =>{
 const deleteButton = document.querySelector('#delete-button')
 
 deleteButton.addEventListener('click', _ => {
-  fetch('/verse', {
+  fetch('/verses', {
     method: 'delete',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      name: 'me'
+      name: 'Aaliyah'
     })
     
   })
@@ -39,4 +39,20 @@ deleteButton.addEventListener('click', _ => {
 
 })
 
+const messageDiv = document.querySelector('#message')
+
+deleteButton.addEventListener('click', _ => {
+  fetch('/verses')
+  .then(res => {
+    if (res.ok) return res.json()
+  })
+    .then(response => {
+      if (response === 'No quote to delete') {
+        messageDiv.textContent = 'No More Aaliyah Lyrics'
+      } else {
+        window.location.reload(true)
+      }
+    })
+    .catch(error => console.error(error))
+})
 

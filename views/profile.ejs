@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>What does God say?</title>
+    <title>Whose the best</title>
     <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
@@ -36,11 +36,12 @@
             </div>
         </div>
         <div class="col-sm-6">
-          <h3>How are you feeling?</h3>
-          <p>Are you happy enter happy, are your sad, enter sad, are you mad, enter mad.</p>
+          <h3>Whose the best?</h3>
+          <p>If Aaliyah,was still here would she have the same following as Aaliyah?</p>
+          <p>Let's compare the lyrics</p>
           <ul class="verses">
           <% for(var i=0; i<verses.length; i++) {%>
-            <li class="verse">
+            <li class="verses">
               <span><%= verses[i].name %></span>
               <span><%= verses[i].entry %></span>
               <!--<span><%= messages[i].thumbUp %></span>
@@ -54,23 +55,25 @@
           <h2></h2>
         <% if (user.local.email) { %>
           <form action="/verses" method="POST">
-            <input type="text" placeholder="Enter the word you here" name="name">
-            <input type="text" placeholder="I feel...." name="entry">
+            <input type="text" placeholder="Enter Beyonce here" name="name">
+            <input type="text" placeholder="favorite Beyonce lyric" name="entry">
             <button type="submit">Submit</button>
           </form>
         </div>
         <% } %>
         <!--using https://zellwk.com/blog/crud-express-mongodb/ as a guide for this project-->
         <div>
-          <h2>God cares for you! </h2>
-          <p>See what says about each feeling</p>
-          <button id="update-button">What does God Say?</button>
+          <h2>Aaliyah's Turn</h2>
+          <p>Aaliyah Once said...</p>
+          <button id="update-button">Sing-Girl</button>
         </div>
+
         <div>
-          <h2>Let His Word Rule Your Mind</h2>
-          <p>Delete all of your feeling good or bad, all let God's word reign!</p>
-          <button id="update-button">Delete MY thoughts</button>
+          <h2>But Beyonce is Here</h2>
+          <p>so let's give her, her flowers</p>
+          <button id="update-button">Delete Aaliyah lyrics</button>
         </div>
+        <div id ="message"></div>
         
 
 </div>
