@@ -15,7 +15,7 @@ module.exports = function (app, passport, db) {
       if (err) return console.log(err)
       res.render('profile.ejs', {
         user: req.user,
-        messages: result
+        verses: result
       })
     })
   });
@@ -81,7 +81,7 @@ app.put('/verses', (req, res) => {
 
 //
 app.delete('/verses', (req, res) => {
-  db.collection('verses'). deleteOne({ name:'Aaliyah' })
+  db.collection('verses').findOneAndDelete({ name:'Aaliyah' })
   .then(result => {
     if (result.deletedCount === 0){
       return res.json('No quote to delete')
