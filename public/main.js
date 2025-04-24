@@ -14,20 +14,21 @@ update.addEventListener('click', function () {
     method: 'put',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      'name': 'Aaliyah',
-      'entry': 'Are you that somebody?'
+      name: 'Aaliyah',
+      entry: 'Are you that somebody?'
     })
-      .then(response => {
-        if (response.ok) return response.json()
-      })
-      .then(data => {
-        console.log(data)
-        window.location.reload(true)
-      })
-
-
-
   })
+    .then(response => {
+      if (response.ok) return response.json()
+    })
+    .then(data => {
+      console.log(data)
+      window.location.reload(true)
+    })
+
+
+
+
 })
 
 //const deleteButton = document.querySelector('#delete-button')
