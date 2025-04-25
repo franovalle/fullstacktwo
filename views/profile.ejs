@@ -1,83 +1,91 @@
 <!doctype html>
 <html>
+
 <head>
-    <title>Whose the best</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="style.css">
+  <title>Verzuz</title>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<div class="container">
+  <div class="container">
 
     <div class="page-header text-center">
-        <h1>Profile Page</h1>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+      <h1>Profile Page</h1>
+      <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
 
 
 
     <div class="row">
 
-        <!-- LOCAL INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3><span class="fa fa-user"></span> Local</h3>
+      <!-- LOCAL INFORMATION -->
+      <div class="col-sm-6">
+        <div class="well">
+          <h3><span class="fa fa-user"></span> Local</h3>
 
-                <% if (user.local.email) { %>
-                    <p>
-                        <strong>id</strong>: <%= user._id %><br>
-                        <strong>email</strong>: <%= user.local.email %><br>
-                        <strong>password</strong>: <%= user.local.password %>
-                    </p>
+          <% if (user.local.email) { %>
+            <p>
+              <strong>id</strong>: <%= user._id %><br>
+                <strong>email</strong>: <%= user.local.email %><br>
+                  <strong>password</strong>: <%= user.local.password %>
+            </p>
 
-                    <a href="/unlink/local" class="btn btn-default">Unlink</a>
-                <% } else { %>
-                    <a href="/connect/local" class="btn btn-default">Connect Local</a>
-                <% } %>
-
-            </div>
+            <a href="/unlink/local" class="btn btn-default">Unlink</a>
+            <% } else { %>
+              <a href="/connect/local" class="btn btn-default">Connect Local</a>
+              <% } %>
+                <!--using https://zellwk.com/blog/crud-express-mongodb/ as a guide for this project-->
         </div>
-        <div class="col-sm-6">
-          <h3>Whose the best?</h3>
-          <p>If Aaliyah,was still here would she have the same following as Beyonce?</p>
-          <p>Let's compare the lyrics</p>
-          <ul class="verses">
+      </div>
+      <div class="col-sm-6">
+        <h3>Whose the best?</h3>
+        <p>If Aaliyah,was still here would she have the same following as Beyonce?</p>
+        <p>Let's compare the lyrics</p>
+        <ul class="verses">
           <% for(var i=0; i<verses.length; i++) {%>
             <li class="verses">
-              <span><%= verses[i].name %></span>
-              <span><%= verses[i].entry %></span>
-              
-            </li>
-          <% } %>
-          </ul>
+              <span>
+                <%= verses[i].name %>
+              </span>
+              <span>
+                <%= verses[i].entry %>
+              </span>
 
-          <h2></h2>
+            </li>
+            <% } %>
+        </ul>
+
+        <h2></h2>
         <% if (user.local.email) { %>
           <form action="/verses" method="POST">
             <input type="text" placeholder="Enter Beyonce here" name="name">
             <input type="text" placeholder="favorite Beyonce lyric" name="entry">
             <button type="submit">Submit</button>
           </form>
-        </div>
-        <% } %>
-        <!--using https://zellwk.com/blog/crud-express-mongodb/ as a guide for this project-->
-        <div>
-          <h2>Aaliyah's Turn</h2>
-          <p>Aaliyah Once said...</p>
-          <button id="update">Sing-Girl</button>
-        </div>
+      </div>
+      <div>
+        <h2>Aaliyah's Turn</h2>
+        <p>Aaliyah Once said...</p>
+        <button id="update">Sing-Girl</button>
+      </div>
 
-        <div>
-          <h2>But Beyonce is Here</h2>
-          <p>so let's give her, her flowers</p>
-          <button id="delete">Delete Aaliyah lyrics</button>
-        </div>
-        <div id ="message"></div>
-        
+      <div>
+        <h2>But Beyonce is Here</h2>
+        <p>so let's give her, her flowers</p>
+        <button id="delete">Delete Aaliyah lyrics</button>
+      </div>
+      <div id="message"></div>
+      <% } %>
 
-</div>
 
-<script src="main.js"></script>
+
+
+    </div>
+
+    <script src="main.js"></script>
 
 </body>
+
 </html>
