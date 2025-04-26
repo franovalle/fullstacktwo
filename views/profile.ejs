@@ -55,12 +55,12 @@
           <h2></h2>
         <% if (user.local.email) { %>
           <form action="/verses" method="POST">
-            <input type="text" placeholder="Enter Beyonce here" name="name">
-            <input type="text" placeholder="Enter your favorite Beyonce lyric" name="entry">
+            <input type="text" placeholder="artist" name="name">
+            <input type="text" placeholder="lyric" name="entry">
             <button type="submit">Sing!</button>
           </form>
-          <button id="update">Battle</button>
-        <button id="delete">Delete Aaliyah lyrics</button>
+          <button id="update">Battle</button><!--Note to self: I need to get better at bootstrap to fix position of buttons-->
+        <button id="delete">Give Beyonce Her Flowers</button><!--Note to self: this is a working draft, looking forward to making it better, where Aaliyah lyrics will update , a people can vote for favorite artist-->
         </div>
         <% } %>
         <!--using https://zellwk.com/blog/crud-express-mongodb/ as a guide for this project
