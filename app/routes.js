@@ -56,7 +56,7 @@ module.exports = function (app, passport, db) {
   app.put('/verses', (req, res) => {
     db.collection('verses')
       .findOneAndUpdate(
-        { name: 'beyonce' },
+        { name: 'Beyonce' },
         {
           $set: {
             name: req.body.name,
